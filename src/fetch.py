@@ -24,6 +24,21 @@ def get_num_seqs(in_fasta):
         c += 1
     return c
 
+def get_num_reads(in_fastq):
+    """Gets the number of reads in a FASTQ file.
+
+    Args:
+        in_fastq (str): input FASTQ file
+
+    Returns:
+        int: number of reads in FASTQ file
+    """
+
+    c = 0
+    for rec in SeqIO.parse(in_fastq, "fastq"):
+        c += 1
+    return c
+    
 def get_ref_tRNA():
     """Defines the reference tRNA to be used for rotating contigs.   
     
@@ -47,3 +62,4 @@ def get_ref_tRNA():
     else:
         reference_tRNA = max(tRNAs, key=tRNAs.get)
     return reference_tRNA
+
