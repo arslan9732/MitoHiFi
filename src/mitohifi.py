@@ -131,7 +131,7 @@ def main():
             logging.info(" ".join(bam2fastq_cmd) + " > gbk.HiFiMapped.bam.fastq")
             mapped_fastq_f = open("gbk.HiFiMapped.bam.fastq", "w")
             subprocess.run(bam2fastq_cmd, stdout=mapped_fastq_f, stderr=subprocess.DEVNULL)
-            before_filter = fetch.get_num_seqs("gbk.HiFiMapped.bam.fastq")
+            before_filter = fetch.get_num_reads("gbk.HiFiMapped.bam.fastq")
             logging.info(f"Total number of mapped reads: {before_filter}")
 
             max_read_len = round(args.max_read_len * rel_mito_len)
@@ -152,7 +152,7 @@ def main():
             finally:
                 f.close()
 
-            after_filter = fetch.get_num_seqs("gbk.HiFiMapped.bam.filtered.fastq")
+            after_filter = fetch.get_num_reads("gbk.HiFiMapped.bam.filtered.fastq")
             logging.info(f"Number of filtered reads: {after_filter}")
         
         else:
